@@ -2,7 +2,7 @@ name: Main Branch Release
 on: 
   push:
     branches: 
-      - feature/release-management
+      - main
     paths:
       - 'deployment/**'
 jobs:
