@@ -1,7 +1,5 @@
 namespace Distributed.Azure.IoT.Edge.System.IoTHubModule.Controllers
 {
-    using Dapr;
-
     using Distributed.Azure.IoT.Edge.Common;
     using Distributed.Azure.IoT.Edge.Common.Device;
 
@@ -24,7 +22,6 @@ namespace Distributed.Azure.IoT.Edge.System.IoTHubModule.Controllers
             _deviceClient = deviceClient ?? throw new ArgumentNullException(nameof(deviceClient));
         }
 
-        [Topic("pubsub", "telemetry")]
         [HttpPost("telemetry")]
         public async Task<ActionResult> ReceiveTelemetry(CancellationToken cancellationToken, [FromBody] JsonDocument telemetry)
         {
@@ -37,6 +34,8 @@ namespace Distributed.Azure.IoT.Edge.System.IoTHubModule.Controllers
                 await _deviceClient.SendEventAsync(message, cancellationToken);
             }
 
+            // Specific what needs to happen with message via status code response i.e. retry/drop etc.
+            // https://docs.microsoft.com/en-us/dotnet/architecture/dapr-for-net-developers/publish-subscribe
             return Ok();
         }
     }

@@ -1,18 +1,21 @@
-// dapr run --app-id upstream-module --app-port 5000 -- dotnet run -- -p "<your device connection string>"
+// Local run cmd line.
+// dapr run --app-id iot-hub-integration-module --app-protocol http --app-port 5000 --components-path=../../../deployment/helm/iot-edge-accelerator/templates/dapr -- dotnet run -- -p "<Device Connection String>" [-m "messaging"] [-t "telemetry"] [-r "MessageSubscription/telemetry"]
 
 using CommandLine;
 
-using Distributed.Azure.IoT.Edge.Common;
 using Distributed.Azure.IoT.Edge.Common.Device;
+using Distributed.Azure.IoT.Edge.IoTHubIntegrationModule;
 
 var builder = WebApplication.CreateBuilder(args);
 
-IoTHubParameters? parameters = null;
+IoTHubIntegrationParameters? parameters = null;
 
-ParserResult<IoTHubParameters> result = Parser.Default.ParseArguments<IoTHubParameters>(args)
+ParserResult<IoTHubIntegrationParameters> result = Parser.Default.ParseArguments<IoTHubIntegrationParameters>(args)
                 .WithParsed(parsedParams =>
                 {
                     parameters = parsedParams;
+                    builder.Services.AddScoped<IoTHubIntegrationParameters>(sp => parameters);
+                    builder.Services.AddSingleton<IDeviceClient, DeviceClientWrapper>(sp => new DeviceClientWrapper(parameters?.PrimaryConnectionString));
                 })
                 .WithNotParsed(errors =>
                 {
@@ -20,16 +23,12 @@ ParserResult<IoTHubParameters> result = Parser.Default.ParseArguments<IoTHubPara
                 });
 
 // Add services to the container.
-builder.Services.AddControllers().AddDapr();
-
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddSingleton<IDeviceClient, DeviceClientWrapper>(sp => new DeviceClientWrapper(parameters?.PrimaryConnectionString));
 
 var app = builder.Build();
 
@@ -50,7 +49,6 @@ app.MapControllers();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapSubscribeHandler();
     endpoints.MapControllers();
 });
 
