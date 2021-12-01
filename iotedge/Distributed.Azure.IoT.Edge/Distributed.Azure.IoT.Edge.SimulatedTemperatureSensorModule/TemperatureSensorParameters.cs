@@ -17,7 +17,7 @@
          "MessagingPubSub",
          Default = "messaging",
          Required = false,
-         HelpText = "Interval in milliseconds at which simulated sensor telemetry is generated.")]
+         HelpText = "Dapr pubsub messaging component name.")]
         public string? MessagingPubSub { get; set; }
 
         [Option(
@@ -25,7 +25,7 @@
          "MessagingPubSubTopic",
          Default = "telemetry",
          Required = false,
-         HelpText = "Interval in milliseconds at which simulated sensor telemetry is generated.")]
+         HelpText = "Dapr pubsub messaging topic name.")]
         public string? MessagingPubSubTopic { get; set; }
     }
 }

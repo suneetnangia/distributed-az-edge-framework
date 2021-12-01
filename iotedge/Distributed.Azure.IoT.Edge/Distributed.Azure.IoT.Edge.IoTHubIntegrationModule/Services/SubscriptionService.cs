@@ -1,16 +1,16 @@
-﻿namespace Distributed.Azure.IoT.Edge.IoTHubIntegrationModule
+namespace Distributed.Azure.IoT.Edge.IoTHubIntegrationModule.Services
 {
     using Dapr.AppCallback.Autogen.Grpc.v1;
 
     using Distributed.Azure.IoT.Edge.Common.Device;
-
-    using global::System.Text;
 
     using Google.Protobuf.WellKnownTypes;
 
     using Grpc.Core;
 
     using Microsoft.Azure.Devices.Client;
+
+    using System.Text;
 
     public class SubscriptionService : AppCallback.AppCallbackBase
     {
@@ -19,7 +19,7 @@
         private readonly string _pubsubName;
         private readonly string _pubsubTopicName;
 
-        public SubscriptionService(ILogger<SubscriptionService> logger, IDeviceClient deviceClient, string pubsubName, string pubsubTopicName)
+        public SubscriptionService(ILogger<SubscriptionService> logger, IDeviceClient deviceClient, string? pubsubName, string? pubsubTopicName)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _deviceClient = deviceClient ?? throw new ArgumentNullException(nameof(deviceClient));
@@ -33,8 +33,8 @@
 
             subscriptionsResponse.Subscriptions.Add(new TopicSubscription
             {
-                PubsubName = _pubsubName,
-                Topic = _pubsubTopicName
+                PubsubName = "messaging",
+                Topic = "telemetry"
             });
 
             return Task.FromResult(subscriptionsResponse);
@@ -47,14 +47,13 @@
                 throw new ArgumentNullException(nameof(request));
             }
 
-            var topicString = request.Data.ToString();
+            var topicString =request.Data.ToStringUtf8();
 
-            _logger.LogTrace($"Topic received from dapr pubsub, data: {0}", topicString);
-
+            _logger.LogInformation($"Topic received from dapr pubsub, data: {topicString}");
             using (var message = new Message(topicString == null ? null : Encoding.UTF8.GetBytes(topicString)))
             {
                 // TODO: add cancellation token from higher layers.
-                await _deviceClient.SendEventAsync(message, CancellationToken.None);
+                await _deviceClient.SendEventAsync(message, CancellationToken.None);                
             }
 
             // Depending on the status return dapr side will either retry or drop the message from underlying pubsub.

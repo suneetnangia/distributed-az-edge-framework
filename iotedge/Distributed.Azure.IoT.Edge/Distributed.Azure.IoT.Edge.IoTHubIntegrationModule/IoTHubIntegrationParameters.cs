@@ -2,7 +2,7 @@
 {
     using CommandLine;
 
-    public class IoTHubIntegrationParameters
+    internal class IoTHubIntegrationParameters
     {
         [Option(
         'p',
@@ -14,22 +14,17 @@
         [Option(
         'm',
         "PubSubMessagingName",
-        Required = true,
+        Default = "messaging",
+        Required = false,
         HelpText = "Dapr pubsub messaging component name.")]
         public string? PubSubMessagingName { get; set; }
 
         [Option(
         't',
         "PubSubTopicName",
-        Required = true,
+        Default = "telemetry",
+        Required = false,
         HelpText = "Dapr pubsub messaging topic name.")]
         public string? PubSubTopicName { get; set; }
-
-        [Option(
-        'r',
-        "PubSubMappedRoute",
-        Required = true,
-        HelpText = "Dapr pubsub messaging topic name.")]
-        public string? PubSubMappedRoute { get; set; }
     }
 }
