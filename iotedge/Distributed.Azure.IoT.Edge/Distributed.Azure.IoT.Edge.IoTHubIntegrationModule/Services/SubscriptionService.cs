@@ -1,5 +1,7 @@
 namespace Distributed.Azure.IoT.Edge.IoTHubIntegrationModule.Services
 {
+    using System.Text;
+
     using Dapr.AppCallback.Autogen.Grpc.v1;
 
     using Distributed.Azure.IoT.Edge.Common.Device;
@@ -9,8 +11,6 @@ namespace Distributed.Azure.IoT.Edge.IoTHubIntegrationModule.Services
     using Grpc.Core;
 
     using Microsoft.Azure.Devices.Client;
-
-    using System.Text;
 
     public class SubscriptionService : AppCallback.AppCallbackBase
     {
@@ -47,13 +47,13 @@ namespace Distributed.Azure.IoT.Edge.IoTHubIntegrationModule.Services
                 throw new ArgumentNullException(nameof(request));
             }
 
-            var topicString =request.Data.ToStringUtf8();
+            var topicString = request.Data.ToStringUtf8();
 
             _logger.LogInformation($"Topic received from dapr pubsub, data: {topicString}");
             using (var message = new Message(topicString == null ? null : Encoding.UTF8.GetBytes(topicString)))
             {
                 // TODO: add cancellation token from higher layers.
-                await _deviceClient.SendEventAsync(message, CancellationToken.None);                
+                await _deviceClient.SendEventAsync(message, CancellationToken.None);
             }
 
             // Depending on the status return dapr side will either retry or drop the message from underlying pubsub.
