@@ -1,9 +1,9 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Distributed.Azure.IoT.Edge.Common.Tests
+namespace Distributed.Azure.IoT.Edge.IoTHubModule.Tests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
-    public class CommonTests
+    public class IoTHubModuleTests
     {
         [TestMethod]
         public void TestMethod1()

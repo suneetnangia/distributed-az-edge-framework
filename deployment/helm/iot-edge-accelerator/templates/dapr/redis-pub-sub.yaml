@@ -1,7 +1,8 @@
+# TODO: Add overarching component configuration.
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: pubsub
+  name: local-pub-sub
   namespace: default
 spec:
   type: pubsub.redis
@@ -13,6 +14,18 @@ spec:
     secretKeyRef:
       name: redis
       key: redis-password
+  # Lock down type of access for each service.
+  - name: publishingScopes
+    value: "simulated-temperature-sensor-module=telemetry;data-gateway-module="
+  - name: subscriptionScopes
+    value: "simulated-temperature-sensor-module=;data-gateway-module=telemetry"
+  # Lock down the topics on this pubsub component.
+  - name: allowedTopics
+    value: "telemetry"
+
  # uncomment below for connecting to redis cache instances over TLS (ex - Azure Redis Cache)
   # - name: enableTLS
   #   value: true 
+scopes:
+- data-gateway-module
+- simulated-temperature-sensor-module

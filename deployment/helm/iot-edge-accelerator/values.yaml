@@ -1,5 +1,8 @@
-# Simulated temperature sensor feed interval in milliseconds.
+# Simulated Temperature Sensor module settings
 simulatedTemperatureSensorFeedIntervalInMilliseconds: 1000
 
-# Primary key of Event Hub, which is used by Data Gateway module to connect to Event Hub in the cloud.
-dataGatewayModuleEventHubPrimaryConnectionString: "replace_with_real_key_at_deploy_time"
+# Data Gateway module settings
+dataGatewayModule:
+  eventHubConnectionString: "replace_with_real_key_at_deploy_time"
+  storageAccountName: "replace_with_storage_account_name_at_deploy_time"
+  storageAccountKey: "replace_with_storage_account_key_at_deploy_time"

@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        app: distributed-az-edge-framework
+        app: data-gateway-module
       annotations:
         dapr.io/enabled: "true"
         dapr.io/app-id: "data-gateway-module"
@@ -22,11 +22,5 @@ spec:
       containers:
       - name: data-gateway-module
         image: suneetnangia/distributed-az-iot-edge-datagatewaymodule:local-dev
-        args: ["-p", "$(EVENT_HUB_CONNECTION_STRING)"]
-        env:
-        - name: EVENT_HUB_CONNECTION_STRING
-          valueFrom:
-            secretKeyRef:
-              name: data-gateway-module-secret
-              key: eventHubConnectionString
+        imagePullPolicy: Always
       restartPolicy: Always
