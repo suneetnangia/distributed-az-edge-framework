@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distributed.Azure.IoT.Edge.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distributed.Azure.IoT.Edge.Common", "Distributed.Azure.IoT.Edge.Common\Distributed.Azure.IoT.Edge.Common.csproj", "{CC1000A0-3492-42AF-9BB0-2C75EBA44975}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distributed.Azure.IoT.Edge.IoTHubIntegrationModule", "Distributed.Azure.IoT.Edge.IoTHubIntegrationModule\Distributed.Azure.IoT.Edge.IoTHubIntegrationModule.csproj", "{1BCC9791-B92D-4A42-885E-DA68004E9DE5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distributed.Azure.IoT.Edge.IoTHubIntegrationModule.Tests", "Distributed.Azure.IoT.Edge.IoTHubIntegrationModule.Tests\Distributed.Azure.IoT.Edge.IoTHubIntegrationModule.Tests.csproj", "{6D04CAE5-F4EC-489F-938D-7DF3F20335E0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distributed.Azure.IoT.Edge.Common.Tests", "Distributed.Azure.IoT.Edge.Common.Tests\Distributed.Azure.IoT.Edge.Common.Tests.csproj", "{B4844607-E5A7-42B7-9691-D12A97E07D3D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distributed.Azure.IoT.Edge.SimulatedTemperatureSensorModule.Tests", "Distributed.Azure.IoT.Edge.SimulatedTemperatureSensorModule.Tests\Distributed.Azure.IoT.Edge.SimulatedTemperatureSensorModule.Tests.csproj", "{BD68E18C-A4CB-4030-A852-A4251BC04754}"
@@ -36,14 +32,6 @@ Global
 		{CC1000A0-3492-42AF-9BB0-2C75EBA44975}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC1000A0-3492-42AF-9BB0-2C75EBA44975}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC1000A0-3492-42AF-9BB0-2C75EBA44975}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1BCC9791-B92D-4A42-885E-DA68004E9DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BCC9791-B92D-4A42-885E-DA68004E9DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BCC9791-B92D-4A42-885E-DA68004E9DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BCC9791-B92D-4A42-885E-DA68004E9DE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D04CAE5-F4EC-489F-938D-7DF3F20335E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D04CAE5-F4EC-489F-938D-7DF3F20335E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D04CAE5-F4EC-489F-938D-7DF3F20335E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D04CAE5-F4EC-489F-938D-7DF3F20335E0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B4844607-E5A7-42B7-9691-D12A97E07D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4844607-E5A7-42B7-9691-D12A97E07D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4844607-E5A7-42B7-9691-D12A97E07D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -28,14 +28,14 @@ jobs:
     - name: Echo Docker images tag
       run: echo ${{steps.vars.outputs.tag}}
       
-    - name: Build the tagged Docker image for Iot Hub Integration module.
+    - name: Build the tagged Docker image for Data Gateway module.
       run: docker build iotedge/Distributed.Azure.IoT.Edge/. --file iotedge/Distributed.Azure.IoT.Edge/Distributed.Azure.IoT.Edge.IoTHubIntegrationModule/Dockerfile --tag suneetnangia/distributed-az-iot-edge-iothubintegrationmodule:${{steps.vars.outputs.tag}}
-    - name: Push the tagged Docker image for Iot Hub Integration module.
+    - name: Push the tagged Docker image for Data Gateway module.
       run: docker push suneetnangia/distributed-az-iot-edge-iothubintegrationmodule:${{steps.vars.outputs.tag}}
 
-    - name: Build the latest Docker image for Iot Hub Integration module.
+    - name: Build the latest Docker image for Data Gateway module.
       run: docker build iotedge/Distributed.Azure.IoT.Edge/. --file iotedge/Distributed.Azure.IoT.Edge/Distributed.Azure.IoT.Edge.IoTHubIntegrationModule/Dockerfile --tag suneetnangia/distributed-az-iot-edge-iothubintegrationmodule:main-ci-latest
-    - name: Push the latest Docker image for Iot Hub Integration module.
+    - name: Push the latest Docker image for Data Gateway module.
       run: docker push suneetnangia/distributed-az-iot-edge-iothubintegrationmodule:main-ci-latest
       
     - name: Build the tagged Docker image for Simulated Temperature Sensor module.
