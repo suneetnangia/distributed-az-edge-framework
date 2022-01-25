@@ -9,9 +9,14 @@ Param(
 )
 
 $ProgressPreference = 'SilentlyContinue'
+$baseLocation = "https://raw.githubusercontent.com/buzzfrog/distributed-az-edge-framework/dagk/powershell-function"
+
+# bootstrap functions
+Invoke-WebRequest -Uri "$baseLocation/deployment/functions.ps1" -OutFile "functions.ps1"
+. .\functions.ps1
 
 # ----- Copy scripts from source location
-$baseLocation = "https://raw.githubusercontent.com/buzzfrog/distributed-az-edge-framework/dagk/powershell-function"
+Write-Title("Download Scripts")
 
 Invoke-WebRequest -Uri "$baseLocation/deployment/deploy-core-infrastructure.ps1" -OutFile "deploy-core-infrastructure.ps1"
 Invoke-WebRequest -Uri "$baseLocation/deployment/deploy-core-platform.ps1" -OutFile "deploy-core-platform.ps1"

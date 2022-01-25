@@ -17,16 +17,8 @@ Param(
     $Location = 'westeurope'
 )
 
-Function Write-Title ($text) {
-    $width = (Get-Host).UI.RawUI.WindowSize.Width
-    $title = ""
-    if($text.length -ne 0)
-    {
-        $title = "=[ " + $text + " ]="
-    }
-
-    Write-Host $title.PadRight($width, "=") -ForegroundColor green
-}
+# to get access to function Write-Title
+. .\functions.ps1
 
 $appKubernetesNamespace = "edge-app1"
 $deploymentId = Get-Random
