@@ -14,8 +14,6 @@ Param(
 # to get access to function Write-Title
 . .\functions.ps1
 
-$deploymentId = Get-Random
-
 Write-Title("Start Deploying Core Platform")
 $startTime = Get-Date
 
