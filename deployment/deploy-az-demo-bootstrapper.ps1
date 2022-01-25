@@ -8,8 +8,10 @@ Param(
     $ApplicationName
 )
 
+$ProgressPreference = 'SilentlyContinue'
+
 # ----- Copy scripts from source location
-$baseLocation = "https://raw.githubusercontent.com/suneetnangia/distributed-az-edge-framework/main"
+$baseLocation = "https://raw.githubusercontent.com/buzzfrog/distributed-az-edge-framework/dagk/powershell-function"
 
 Invoke-WebRequest -Uri "$baseLocation/deployment/deploy-core-infrastructure.ps1" -OutFile "deploy-core-infrastructure.ps1"
 Invoke-WebRequest -Uri "$baseLocation/deployment/deploy-core-platform.ps1" -OutFile "deploy-core-platform.ps1"
@@ -25,13 +27,10 @@ Invoke-WebRequest -Uri "$baseLocation/deployment/bicep/modules/eventhub.bicep" -
 
 ./deploy-core-infrastructure.ps1 -ApplicationName $ApplicationName
 
-clear
 ./deploy-core-platform.ps1 -ApplicationName $ApplicationName
 
-clear
 ./deploy-app.ps1 -ApplicationName $ApplicationName -AKSClusterResourceGroupName $env:RESOURCEGROUPNAME -AKSClusterName $env:AKSCLUSTERNAME
 
-clear
 Write-Host "-------------------------------------------------------------------------------------------------------------------------------------------" -ForegroundColor Yellow
 Write-Host "Distributed Edge Accelerator is now deployed in Azure Resource Group '$env:RESOURCEGROUPNAME', please use the Event Hub instance to view the OPC UA and Simulated Sensor telemetry." -ForegroundColor Yellow
 Write-Host "-------------------------------------------------------------------------------------------------------------------------------------------" -ForegroundColor Yellow
