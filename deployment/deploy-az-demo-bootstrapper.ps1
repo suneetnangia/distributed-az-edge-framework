@@ -11,7 +11,7 @@ Param(
 Clear-Host
 
 $ProgressPreference = 'SilentlyContinue'
-$baseLocation = "https://raw.githubusercontent.com/buzzfrog/distributed-az-edge-framework/dagk/powershell-function"
+$baseLocation = "https://raw.githubusercontent.com/suneetnangia/distributed-az-edge-framework/main"
 
 # bootstrap functions
 Invoke-WebRequest -Uri "$baseLocation/deployment/functions.ps1" -OutFile "functions.ps1"
