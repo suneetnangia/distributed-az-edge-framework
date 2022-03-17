@@ -11,18 +11,8 @@ Param(
     $Location = 'westeurope'
 )
 
-Function Write-Title ($text) {
-    $width = (Get-Host).UI.RawUI.WindowSize.Width
-    $title = ""
-    if($text.length -ne 0)
-    {
-        $title = "=[ " + $text + " ]="
-    }
-
-    Write-Host $title.PadRight($width, "=") -ForegroundColor green
-}
-
-$deploymentId = Get-Random
+# to get access to function Write-Title
+. .\functions.ps1
 
 Write-Title("Start Deploying Core Platform")
 $startTime = Get-Date
