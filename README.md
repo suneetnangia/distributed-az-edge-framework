@@ -1,3 +1,6 @@
+# This repo is now archived as it's moved to Azure Samples
+https://github.com/Azure-Samples/distributed-az-edge-framework
+
 # Distributed Azure IoT Workload Accelerator for K8s
 
 [![GitHub CI](https://github.com/suneetnangia/distributed-az-edge-framework/actions/workflows/CI.yml/badge.svg)](https://github.com/suneetnangia/distributed-az-edge-framework/actions/workflows/CI.yml)
